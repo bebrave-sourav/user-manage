@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <form>
+      <input type="text" name="fname" id="i1" />
+      <input type="text" name="lname" id="i2" />
+      <input type="text" name="email" id="i3" />
+      <button type="button" class="btn btn-primary" onclick="createUser()">
+        Create User
+      </button>
+    </form>
+    <button type="button" class="btn btn-info" onclick="readUser()">
+      Show User
+    </button>
+    <button type="button" class="btn btn-success" onclick="updateUser()">
+      Update User
+    </button>
+    <button type="button" class="btn btn-danger" onclick="deleteUser()">
+      Delete User
+    </button>
+    <div class="alert alert-success d-none" id="alert">
+      <strong>Success!</strong> Indicates a successful or positive action.
+    </div>
+    <script>
+          var url;
+          createUser = () => {
+            const form = document.forms[0];
+            const inputs = form.querySelectorAll("input");
+            const userData = {
+              fname: inputs[0].value,
+              lname: inputs[1].value,
+              email: inputs[2].value,
+            };
+            //const formData = new FormData(form);
+            url = "http://localhost:5000/user";
+            fetch(url, {
+              method: "POST",
+              headers: { "Content-type": "application/json ; charset=UTF-8" },
+              body: JSON.stringify({ userData })
+            }).then(response => response.json())
+            .then(data => {
+              if(data.success==1)
+              {
+                document.getElementById('alert').classList.remove('d-none');
+              }
+            });
+          
+          }
+          updateUser = () => {
+            const form = document.forms[0];
+            const inputs = form.querySelectorAll("input");
+            const userData = {
+              id:w,
+              fname: inputs[0].value,
+              lname: inputs[1].value,
+              email: inputs[2].value,
+            };
+            url = "http://localhost:5000/user";
+            fetch(url, {
+              method: "PUT",
+              headers: { "Content-type": "application/json ; charset=UTF-8" },
+              body: JSON.stringify({ userData })
+            });
+          };
+
+          readUser = () => {
+            url = "http://localhost:5000/user?userid=4";
+            fetch(url, {
+              method: "GET",
+            }).then(response => response.json())
+            .then(data => {
+               document.getElementById('i1').value=data.result[0].fname;
+              document.getElementById('i2').v=data.result[0].lname;
+              document.getElementById('i3').value=data.result[0].email;
+              if(data.success==1)
+              {
+                document.getElementById('alert').classList.remove('d-none');
+              }
+            });;
+          };
+
+          readUsers = () => {
+            url = "http://localhost:5000/user";
+            fetch(url, {
+              method: "GET",
+            }).then(response => response.json())
+            .then(data => {
+
+              if(data.success==1)
+              {
+                document.getElementById('alert').classList.remove('d-none');
+              }
+            });;
+          };
+           
+          
+          deleteUser = () => {
+            alert("Are U sure to delete this user?");
+            url = "http://localhost:5000/user?userid=3";
+            fetch(url, {
+              method: "DELETE",
+            });
+          };
+    </script>
+  </body>
+</html>
