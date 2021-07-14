@@ -11,6 +11,8 @@ app.use(express.static('public'));
 //app api
 app.use("/", router);
 
+
+
 app.listen(process.env.APP_PORT, () => {
   console.log(`app started at port http://localhost:${process.env.APP_PORT}`);
 });
