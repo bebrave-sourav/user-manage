@@ -1,0 +1,36 @@
+#b1 {
+    width: 120px;
+    height: 40px;
+    background-color: rgb(21, 21, 95);
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+  }
+
+  #t1,
+  #t2,
+  #t3 {
+    margin: 5px 5px 0px 5px;
+    width: 95%;
+  }
+
+  table,
+  td,
+  th {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  #u,
+  #d {
+    height: 25px;
+    width: 25px;
+    padding: 0%;
+  }
