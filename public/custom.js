@@ -4,7 +4,7 @@ template.innerHTML = `
                   border: 1px solid black;
                   border-radius: 5px;
                   margin-top: 4px;
-                ">
+                " class=".content">
               <form>
                 <input type="text" name="fname" class="form-control" id="t1" placeholder="enter first name" required disabled>
                 <br />
@@ -27,7 +27,7 @@ class EditUser extends HTMLElement {
     }
     connectedCallback() {
         
-        this.appendChild(template);
+        this.appendChild(template.content);
     }
 
     disconnectedCallback() { }
